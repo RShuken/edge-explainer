@@ -1542,7 +1542,7 @@ section:nth-child(even) {
     <p class="hero-subtitle">A purpose-built intelligence system running on dedicated hardware, orchestrating Dan Caruso's daily operations with enterprise-grade security and human-in-the-loop oversight.</p>
     <div class="hero-stats" role="list">
       <div class="hero-stat" role="listitem">
-        <div class="hero-stat-value" data-count="12">0</div>
+        <div class="hero-stat-value" data-count="22">0</div>
         <div class="hero-stat-label">Custom Skills</div>
       </div>
       <div class="hero-stat" role="listitem">
@@ -1554,8 +1554,8 @@ section:nth-child(even) {
         <div class="hero-stat-label">Security Layers</div>
       </div>
       <div class="hero-stat" role="listitem">
-        <div class="hero-stat-value" data-count="5">0</div>
-        <div class="hero-stat-label">Day Deployment</div>
+        <div class="hero-stat-value" data-count="7">0</div>
+        <div class="hero-stat-label">Phase Deployment</div>
       </div>
     </div>
   </div>
@@ -1637,73 +1637,158 @@ section:nth-child(even) {
     </div>
 
     <div class="timeline" id="timeline">
+      <!-- 3:30 AM - Security Council -->
       <div class="timeline-item">
         <div class="timeline-time">3:30 AM</div>
         <div class="timeline-dot"></div>
         <div class="timeline-content">
           <h4>Security Council</h4>
-          <p>Four AI personas audit overnight activity: Auditor, Red Team, Compliance, and Privacy. Issues flagged for morning review.</p>
-        </div>
-      </div>
-
-      <div class="timeline-item">
-        <div class="timeline-time">6:00 AM</div>
-        <div class="timeline-dot"></div>
-        <div class="timeline-content">
-          <h4>Contact Discovery</h4>
-          <p>Scans recent interactions to identify new contacts, enriches profiles, and updates the Notion CRM.</p>
-        </div>
-      </div>
-
-      <div class="timeline-item">
-        <div class="timeline-time">6:30 AM</div>
-        <div class="timeline-dot"></div>
-        <div class="timeline-content">
-          <h4>Meeting Prep Research</h4>
-          <p>Reviews today's calendar, researches attendees, prepares background briefs and talking points for each meeting.</p>
-        </div>
-      </div>
-
-      <div class="timeline-item">
-        <div class="timeline-time">7:00 AM</div>
-        <div class="timeline-dot"></div>
-        <div class="timeline-content">
-          <h4>Morning Briefing</h4>
-          <p>Delivers comprehensive daily briefing to Dan via Telegram: calendar overview, priority emails, action items, and meeting prep summaries.</p>
-        </div>
-      </div>
-
-      <div class="timeline-item">
-        <div class="timeline-time">7 AM &ndash; 7 PM</div>
-        <div class="timeline-dot" style="background: var(--cyan);"></div>
-        <div class="timeline-content">
-          <h4>Business Hours Monitoring</h4>
-          <p>Continuous automated monitoring across all systems during the workday.</p>
+          <p>4-persona nightly security audit (Auditor, Red Team, Compliance, Privacy). Results delivered to <strong>#security-council</strong> in Emily&rsquo;s group for review.</p>
           <div class="timeline-block">
-            <div class="timeline-block-title">Active Monitors</div>
-            <div class="timeline-block-item">Email monitoring <span class="freq">every 15 min</span></div>
-            <div class="timeline-block-item">Transcript processing <span class="freq">every 30 min</span></div>
-            <div class="timeline-block-item">Notion sync <span class="freq">hourly</span></div>
-            <div class="timeline-block-item">Linear sync <span class="freq">every 2 hrs</span></div>
+            <div class="timeline-block-title">Telegram Routing</div>
+            <div class="timeline-block-item">Emily Edge HQ &rarr; <strong>#security-council</strong></div>
           </div>
         </div>
       </div>
 
+      <!-- 5:00 AM - Contact Enrichment -->
+      <div class="timeline-item">
+        <div class="timeline-time">5:00 AM</div>
+        <div class="timeline-dot" style="background: var(--emerald);"></div>
+        <div class="timeline-content">
+          <h4>Contact Enrichment</h4>
+          <p>Morning batch of enriched contacts delivered to Emily for review and approval before CRM updates are committed.</p>
+          <div class="timeline-block">
+            <div class="timeline-block-title">Telegram Routing</div>
+            <div class="timeline-block-item">Emily Edge HQ &rarr; <strong>#emily-contacts</strong></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 5:30 AM - Two-Tier Morning Briefing -->
+      <div class="timeline-item">
+        <div class="timeline-time">5:30 AM</div>
+        <div class="timeline-dot" style="background: var(--accent);"></div>
+        <div class="timeline-content">
+          <h4>Two-Tier Morning Briefing</h4>
+          <p>Dan gets a concise briefing (&lt;2K chars) in <strong>#dan-briefing</strong>. Emily gets a detailed operational briefing (&lt;6K chars) in <strong>#emily-briefing</strong>. An accuracy agent (Opus) verifies all claims before delivery.</p>
+          <div class="timeline-block">
+            <div class="timeline-block-title">Two-Group Telegram Structure</div>
+            <div class="timeline-block-item">Edge HQ (Dan) &rarr; <strong>#dan-briefing</strong> <span class="freq">&lt;2K chars</span></div>
+            <div class="timeline-block-item">Emily Edge HQ &rarr; <strong>#emily-briefing</strong> <span class="freq">&lt;6K chars</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 5:30 AM - Draft Follow-ups -->
+      <div class="timeline-item">
+        <div class="timeline-time">5:30 AM</div>
+        <div class="timeline-dot" style="background: var(--purple);"></div>
+        <div class="timeline-content">
+          <h4>Draft Follow-ups</h4>
+          <p>Email drafts queued in <strong>#emily-drafts</strong> for Emily&rsquo;s review before sending. Nothing leaves the system without her approval.</p>
+          <div class="timeline-block">
+            <div class="timeline-block-title">Telegram Routing</div>
+            <div class="timeline-block-item">Emily Edge HQ &rarr; <strong>#emily-drafts</strong></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 5 AM - 11 PM - Transcript Pipeline -->
+      <div class="timeline-item">
+        <div class="timeline-time">5 AM &ndash; 11 PM</div>
+        <div class="timeline-dot" style="background: var(--cyan);"></div>
+        <div class="timeline-content">
+          <h4>Transcript Pipeline</h4>
+          <p>Processes meeting recordings every 30 minutes from 3 sources (Gemini, Fathom, Notion). Extracts action items and routes them to Emily for triage.</p>
+          <div class="timeline-block">
+            <div class="timeline-block-title">Sources &amp; Routing</div>
+            <div class="timeline-block-item">Gemini transcripts <span class="freq">every 30 min</span></div>
+            <div class="timeline-block-item">Fathom transcripts <span class="freq">every 30 min</span></div>
+            <div class="timeline-block-item">Notion transcripts <span class="freq">every 30 min</span></div>
+            <div class="timeline-block-item">Action items &rarr; Emily Edge HQ &rarr; <strong>#emily-actions</strong></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Ongoing - Email Monitoring -->
+      <div class="timeline-item">
+        <div class="timeline-time">Ongoing</div>
+        <div class="timeline-dot" style="background: var(--rose);"></div>
+        <div class="timeline-content">
+          <h4>Email Monitoring</h4>
+          <p>Checks every 15 minutes via Himalaya (permanent IMAP). <strong>Urgent emails go to Emily first</strong> &mdash; she decides what reaches Dan.</p>
+          <div class="timeline-block">
+            <div class="timeline-block-title">Routing &mdash; Emily is the filter</div>
+            <div class="timeline-block-item">Urgent &rarr; Emily Edge HQ &rarr; <strong>#emily-urgent</strong> <span class="freq">every 15 min</span></div>
+            <div class="timeline-block-item">Emily reviews &rarr; escalates to Dan when needed</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Ongoing - Calendar Heartbeat -->
+      <div class="timeline-item">
+        <div class="timeline-time">Ongoing</div>
+        <div class="timeline-dot" style="background: var(--orange);"></div>
+        <div class="timeline-content">
+          <h4>Calendar Heartbeat</h4>
+          <p>Every 30 minutes via Scheduling Intelligence. Detects conflicts, calculates travel time, and alerts Emily for rescheduling decisions.</p>
+          <div class="timeline-block">
+            <div class="timeline-block-title">Routing</div>
+            <div class="timeline-block-item">Emily Edge HQ &rarr; <strong>#emily-scheduling</strong> <span class="freq">every 30 min</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Ongoing - Git Autosync -->
+      <div class="timeline-item">
+        <div class="timeline-time">Ongoing</div>
+        <div class="timeline-dot" style="background: var(--emerald);"></div>
+        <div class="timeline-content">
+          <h4>Git Autosync</h4>
+          <p>Hourly automated commits with 3 safety layers. Runs 24/7 to ensure all configuration and skill changes are version-controlled.</p>
+        </div>
+      </div>
+
+      <!-- 6:00 PM - Nightman Evening Planning -->
+      <div class="timeline-item">
+        <div class="timeline-time">6:00 PM</div>
+        <div class="timeline-dot" style="background: var(--purple);"></div>
+        <div class="timeline-content">
+          <h4>Nightman Evening Planning</h4>
+          <p>Sends the night&rsquo;s work plan to both Dan and Emily for approval before autonomous processing begins.</p>
+          <div class="timeline-block">
+            <div class="timeline-block-title">Approval Required</div>
+            <div class="timeline-block-item">Edge HQ (Dan) &rarr; plan preview</div>
+            <div class="timeline-block-item">Emily Edge HQ &rarr; plan preview</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 7:00 PM - End-of-Day Summary -->
       <div class="timeline-item">
         <div class="timeline-time">7:00 PM</div>
         <div class="timeline-dot"></div>
         <div class="timeline-content">
           <h4>End-of-Day Summary</h4>
-          <p>Summarizes the day's activity: completed tasks, pending items, tomorrow's preview, and any flagged issues requiring attention.</p>
+          <p>Day&rsquo;s highlights, completed tasks, and tomorrow&rsquo;s priorities delivered to Dan and Emily.</p>
         </div>
       </div>
 
+      <!-- 10 PM - 5 AM - Nightman -->
       <div class="timeline-item">
-        <div class="timeline-time">All Night</div>
+        <div class="timeline-time">10 PM &ndash; 5 AM</div>
         <div class="timeline-dot" style="background: var(--purple);"></div>
         <div class="timeline-content">
-          <h4>Git Autosync</h4>
-          <p>Hourly git synchronization ensures all configuration and skill changes are version-controlled and backed up.</p>
+          <h4>Nightman</h4>
+          <p>14 autonomous processing cycles running on cheap overnight API rates. Contact enrichment, dev team work, strategic analysis, and system maintenance.</p>
+          <div class="timeline-block">
+            <div class="timeline-block-title">Overnight Cycles</div>
+            <div class="timeline-block-item">Contact enrichment batches</div>
+            <div class="timeline-block-item">Dev team work &amp; code reviews</div>
+            <div class="timeline-block-item">Strategic analysis &amp; research</div>
+            <div class="timeline-block-item">System maintenance &amp; backups</div>
+          </div>
         </div>
       </div>
     </div>
@@ -1718,7 +1803,7 @@ section:nth-child(even) {
     <div class="section-header fade-in">
       <div class="section-label">Development</div>
       <h2>The Skill Pipeline</h2>
-      <p>Every Edge skill follows a rigorous pipeline from research through deployment, with human approval gates at each stage.</p>
+      <p>22 Skills &mdash; All Approved. Every Edge skill followed a rigorous pipeline from research through deployment, with human approval gates at each stage.</p>
     </div>
 
     <!-- Pipeline visualization -->
@@ -1732,8 +1817,8 @@ section:nth-child(even) {
       <div class="pipeline-arrow" aria-hidden="true">&#8594;</div>
       <div class="pipeline-step" role="listitem">
         <div class="pipeline-node">
-          <h4>Draft</h4>
-          <span class="status status-draft">12 Skills</span>
+          <h4>Approved</h4>
+          <span class="status status-active">22 Skills</span>
         </div>
       </div>
       <div class="pipeline-arrow" aria-hidden="true">&#8594;</div>
@@ -1777,87 +1862,157 @@ section:nth-child(even) {
     <div class="skills-grid stagger" id="skillsGrid">
       <div class="skill-card">
         <div class="skill-card-header">
-          <h4>Morning Briefing</h4>
-          <span class="status status-draft">Draft</span>
+          <h4>Security Hardening</h4>
+          <span class="status status-active">Deployed</span>
         </div>
-        <p>Compiles overnight activity, calendar, priority emails, and action items into a structured Telegram message.</p>
+        <p>FileVault encryption, auto-login enabled (LaunchAgent persistence), gateway lockdown, content sanitizer, and secret redaction on dedicated hardware.</p>
       </div>
       <div class="skill-card">
         <div class="skill-card-header">
-          <h4>Email Monitor</h4>
-          <span class="status status-draft">Draft</span>
-        </div>
-        <p>Scans inbox every 15 minutes, categorizes by priority, and surfaces urgent items to Dan.</p>
-      </div>
-      <div class="skill-card">
-        <div class="skill-card-header">
-          <h4>Meeting Prep</h4>
-          <span class="status status-draft">Draft</span>
-        </div>
-        <p>Researches attendees, pulls Notion context, and generates talking points before each meeting.</p>
-      </div>
-      <div class="skill-card">
-        <div class="skill-card-header">
-          <h4>Transcript Processor</h4>
-          <span class="status status-draft">Draft</span>
-        </div>
-        <p>Ingests meeting transcripts, extracts action items, and matches people to the Notion CRM.</p>
-      </div>
-      <div class="skill-card">
-        <div class="skill-card-header">
-          <h4>Contact Discovery</h4>
-          <span class="status status-draft">Draft</span>
-        </div>
-        <p>Identifies new contacts from interactions, enriches profiles via web research, creates Notion records.</p>
-      </div>
-      <div class="skill-card">
-        <div class="skill-card-header">
-          <h4>Notion CRM Sync</h4>
-          <span class="status status-draft">Draft</span>
-        </div>
-        <p>Bidirectional sync of People, Companies, Tasks, and Interactions with the Notion workspace.</p>
-      </div>
-      <div class="skill-card">
-        <div class="skill-card-header">
-          <h4>Linear Sync</h4>
-          <span class="status status-draft">Draft</span>
-        </div>
-        <p>Syncs development tickets between Linear and Notion, keeping both systems current.</p>
-      </div>
-      <div class="skill-card">
-        <div class="skill-card-header">
-          <h4>Security Council</h4>
-          <span class="status status-draft">Draft</span>
+          <h4>Security Council v2</h4>
+          <span class="status status-active">Approved</span>
         </div>
         <p>Nightly 4-persona security audit: reviews access logs, checks for anomalies, and validates compliance.</p>
       </div>
       <div class="skill-card">
         <div class="skill-card-header">
-          <h4>End-of-Day Summary</h4>
-          <span class="status status-draft">Draft</span>
+          <h4>Testing Suite</h4>
+          <span class="status status-active">Approved</span>
         </div>
-        <p>Compiles the day's activity, completed tasks, and tomorrow's preview into an evening Telegram briefing.</p>
+        <p>End-to-end testing via Telegram test topics. No live data. Test group mirrors production structure.</p>
       </div>
       <div class="skill-card">
         <div class="skill-card-header">
-          <h4>Git Autosync</h4>
-          <span class="status status-draft">Draft</span>
+          <h4>Knowledge Graph</h4>
+          <span class="status status-active">Approved</span>
         </div>
-        <p>Hourly automated git commits and pushes to ensure all changes are version-controlled.</p>
+        <p>Neo4j + Graphiti knowledge graph for entity relationships, context retrieval, and persistent memory.</p>
       </div>
       <div class="skill-card">
         <div class="skill-card-header">
-          <h4>Calendar Intelligence</h4>
-          <span class="status status-draft">Draft</span>
+          <h4>Nightman</h4>
+          <span class="status status-active">Approved</span>
         </div>
-        <p>Reads Google Calendar via service account, detects conflicts, and feeds data to other skills.</p>
+        <p>Autonomous overnight processing running 14 cycles: maintenance, analysis, and preparation while Dan sleeps.</p>
       </div>
       <div class="skill-card">
         <div class="skill-card-header">
-          <h4>Email Drafter</h4>
-          <span class="status status-draft">Draft</span>
+          <h4>Himalaya Email</h4>
+          <span class="status status-active">Approved</span>
         </div>
-        <p>Generates context-aware email drafts using Notion CRM data and interaction history for Dan's review.</p>
+        <p>CLI-based email integration via Himalaya for inbox monitoring, categorization, and priority surfacing.</p>
+      </div>
+      <div class="skill-card">
+        <div class="skill-card-header">
+          <h4>Scheduling Intelligence</h4>
+          <span class="status status-active">Approved</span>
+        </div>
+        <p>30-minute heartbeat for calendar awareness, conflict detection, and scheduling coordination.</p>
+      </div>
+      <div class="skill-card">
+        <div class="skill-card-header">
+          <h4>Voice &amp; Tone Engine</h4>
+          <span class="status status-active">Approved</span>
+        </div>
+        <p>Maintains Dan's authentic communication style across all Edge-generated messages and drafts.</p>
+      </div>
+      <div class="skill-card">
+        <div class="skill-card-header">
+          <h4>Voice Cloning Phone Calls</h4>
+          <span class="status status-active">Approved</span>
+        </div>
+        <p>Vapi + ElevenLabs integration for voice-cloned outbound calls with Dan's approval gate.</p>
+      </div>
+      <div class="skill-card">
+        <div class="skill-card-header">
+          <h4>Telegram Communication Strategy</h4>
+          <span class="status status-active">Approved</span>
+        </div>
+        <p>Structured Telegram topic routing for Dan and Emily with priority-based message delivery.</p>
+      </div>
+      <div class="skill-card">
+        <div class="skill-card-header">
+          <h4>Notion Workspace</h4>
+          <span class="status status-active">Approved</span>
+        </div>
+        <p>Full Notion integration with Oversight Agent for writes. Every property gets its own column &mdash; source data is sacred.</p>
+      </div>
+      <div class="skill-card">
+        <div class="skill-card-header">
+          <h4>Personal CRM v3</h4>
+          <span class="status status-active">Approved</span>
+        </div>
+        <p>7-table SQLite CRM for People, Companies, Interactions, Tasks, and relationship intelligence.</p>
+      </div>
+      <div class="skill-card">
+        <div class="skill-card-header">
+          <h4>Contact Auto-Enrichment</h4>
+          <span class="status status-active">Approved</span>
+        </div>
+        <p>Automatically enriches new contacts with web research, social profiles, and company data.</p>
+      </div>
+      <div class="skill-card">
+        <div class="skill-card-header">
+          <h4>Daily Briefing v3</h4>
+          <span class="status status-active">Approved</span>
+        </div>
+        <p>Two-tier briefing: Dan gets concise highlights, Emily gets detailed operational summaries.</p>
+      </div>
+      <div class="skill-card">
+        <div class="skill-card-header">
+          <h4>Meeting Prep</h4>
+          <span class="status status-active">Approved</span>
+        </div>
+        <p>Researches attendees, pulls Notion context, and generates talking points before each meeting.</p>
+      </div>
+      <div class="skill-card">
+        <div class="skill-card-header">
+          <h4>Contextual Email Intelligence v3</h4>
+          <span class="status status-active">Approved</span>
+        </div>
+        <p>Context-aware email drafts using CRM data and interaction history. Drafts route to Gmail Drafts for approval.</p>
+      </div>
+      <div class="skill-card">
+        <div class="skill-card-header">
+          <h4>Transcript Pipeline</h4>
+          <span class="status status-active">Approved</span>
+        </div>
+        <p>Ingests transcripts from 3 sources, extracts action items, and matches people to the CRM.</p>
+      </div>
+      <div class="skill-card">
+        <div class="skill-card-header">
+          <h4>Action Item Routing Engine</h4>
+          <span class="status status-active">Approved</span>
+        </div>
+        <p>Extracts action items from meetings and messages, routes to correct owners via Telegram and Notion.</p>
+      </div>
+      <div class="skill-card">
+        <div class="skill-card-header">
+          <h4>GitHub CI/CD</h4>
+          <span class="status status-active">Approved</span>
+        </div>
+        <p>5-pass Claude code review pipeline for all commits, ensuring quality and security before merge.</p>
+      </div>
+      <div class="skill-card">
+        <div class="skill-card-header">
+          <h4>Git Autosync v2</h4>
+          <span class="status status-active">Approved</span>
+        </div>
+        <p>Hourly automated git commits with 3 safety layers ensuring all changes are version-controlled.</p>
+      </div>
+      <div class="skill-card">
+        <div class="skill-card-header">
+          <h4>Backup &amp; Recovery</h4>
+          <span class="status status-active">Approved</span>
+        </div>
+        <p>Automated backup system with recovery procedures for all Edge data, configs, and skill state.</p>
+      </div>
+      <div class="skill-card">
+        <div class="skill-card-header">
+          <h4>Dev Team Orchestration</h4>
+          <span class="status status-active">Approved</span>
+        </div>
+        <p>PM + Architect + Builders pattern for coordinated development with proactive nudges and status sync.</p>
       </div>
     </div>
   </div>
@@ -1880,10 +2035,10 @@ section:nth-child(even) {
       <!-- Use Case 1: Morning Briefing -->
       <div style="background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px; transition: border-color var(--transition);">
         <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px;">
-          <div style="width: 40px; height: 40px; border-radius: 10px; background: rgba(59, 130, 246, 0.15); display: flex; align-items: center; justify-content: center; font-size: 1.2rem;">7am</div>
+          <div style="width: 40px; height: 40px; border-radius: 10px; background: rgba(59, 130, 246, 0.15); display: flex; align-items: center; justify-content: center; font-size: 1.1rem;">5:30</div>
           <h4 style="margin: 0;">"Edge, what's my day look like?"</h4>
         </div>
-        <p style="color: var(--text-secondary); font-size: 0.9rem; line-height: 1.7; margin-bottom: 12px;">Every morning at 7 AM, Dan gets a Telegram message with his full day context: who he's meeting, what they've discussed before (pulled from Notion People DB), which deals are active with those companies, overdue action items, and urgent unread emails.</p>
+        <p style="color: var(--text-secondary); font-size: 0.9rem; line-height: 1.7; margin-bottom: 12px;">Every morning at 5:30 AM, Dan gets a concise Telegram briefing with his full day context: who he's meeting, what they've discussed before (pulled from Notion People DB), which deals are active with those companies, overdue action items, and urgent unread emails. Emily simultaneously receives her own detailed operational briefing with draft follow-ups and scheduling intelligence.</p>
         <details style="margin-top: 8px;"><summary style="color: var(--accent-light); font-size: 0.85rem; cursor: pointer; user-select: none;">How it works &darr;</summary>
         <p style="color: var(--text-secondary); font-size: 0.85rem; line-height: 1.7; margin: 8px 0 0;">Queries People directory (20K+ records), Companies DB, and Task board. Unknown attendees get Tavily web search for LinkedIn and recent news.</p>
         </details>
@@ -1907,9 +2062,9 @@ section:nth-child(even) {
           <div style="width: 40px; height: 40px; border-radius: 10px; background: rgba(16, 185, 129, 0.15); display: flex; align-items: center; justify-content: center; font-size: 1.2rem;">15m</div>
           <h4 style="margin: 0;">Email triage every 15 minutes</h4>
         </div>
-        <p style="color: var(--text-secondary); font-size: 0.9rem; line-height: 1.7; margin-bottom: 12px;">Edge checks edge@crusoeventures.com via Himalaya (permanent IMAP, no OAuth expiry). Classifies by urgency (Immediate/Today/This Week/FYI), category (Deal Flow/Portfolio/LP/Operations), and intent (Requires Response/Meeting Request/FYI).</p>
+        <p style="color: var(--text-secondary); font-size: 0.9rem; line-height: 1.7; margin-bottom: 12px;">Edge checks edge@crusoeventures.com via Himalaya (permanent IMAP, no OAuth expiry). Classifies by urgency (Immediate/Today/This Week/FYI), category (Deal Flow/Portfolio/LP/Operations), and intent (Requires Response/Meeting Request/FYI). Urgent emails go to Emily first (#emily-urgent) &mdash; she decides what reaches Dan.</p>
         <details style="margin-top: 8px;"><summary style="color: var(--emerald); font-size: 0.85rem; cursor: pointer; user-select: none;">How it works &darr;</summary>
-        <p style="color: var(--text-secondary); font-size: 0.85rem; line-height: 1.7; margin: 8px 0 0;">Dan's Telegram reactions ("Was Urgent"/"Not Urgent") train the classifier over time. Drafts never auto-send &mdash; always approve first.</p>
+        <p style="color: var(--text-secondary); font-size: 0.85rem; line-height: 1.7; margin: 8px 0 0;">All urgent emails route to #emily-urgent first. Emily reviews and forwards to Dan only if truly urgent. Dan never gets false positives. Dan's Telegram reactions ("Was Urgent"/"Not Urgent") train the classifier over time. Drafts never auto-send &mdash; always approve first.</p>
         </details>
       </div>
 
@@ -1933,7 +2088,7 @@ section:nth-child(even) {
         </div>
         <p style="color: var(--text-secondary); font-size: 0.9rem; line-height: 1.7; margin-bottom: 12px;">After every meeting and email interaction, Edge enriches contact records in Notion. New title mentioned? Updated. Company change? Flagged. Last contact date? Auto-updated. The People and Companies databases stay current without Dan lifting a finger.</p>
         <details style="margin-top: 8px;"><summary style="color: var(--cyan); font-size: 0.85rem; cursor: pointer; user-select: none;">How it works &darr;</summary>
-        <p style="color: var(--text-secondary); font-size: 0.85rem; line-height: 1.7; margin: 8px 0 0;">4-database schema (People, Companies, Deals, Interactions) with relations and rollups. External IDs prevent duplicates during sync.</p>
+        <p style="color: var(--text-secondary); font-size: 0.85rem; line-height: 1.7; margin: 8px 0 0;">7-table schema (Contacts, Companies, Interactions, Tags, Embeddings, Event Participation, Field Mappings) with relations and rollups. External IDs prevent duplicates during sync.</p>
         </details>
       </div>
 
@@ -2077,8 +2232,21 @@ section:nth-child(even) {
           <div class="flow-step-line"></div>
         </div>
         <div class="flow-step-content">
+          <h4>Emily Reviews via Telegram</h4>
+          <p>Action items are sent to #emily-actions first. Emily reviews, edits, and triages each item before it reaches Dan. She can approve, modify, reassign, or reject items at this stage.</p>
+          <span class="tool-tag">Emily Edge HQ</span>
+          <span class="tool-tag">#emily-actions</span>
+        </div>
+      </div>
+
+      <div class="flow-step">
+        <div class="flow-step-indicator">
+          <div class="flow-step-number">7</div>
+          <div class="flow-step-line"></div>
+        </div>
+        <div class="flow-step-content">
           <h4>Dan Approves via Telegram</h4>
-          <p>Edge sends a structured summary to Dan on Telegram with extracted action items. Dan can approve, modify, or reject each item before it is committed.</p>
+          <p>Emily-approved action items are presented to Dan on Telegram. Dan can approve, modify, or reject each item before it is committed.</p>
           <span class="tool-tag">Telegram Bot</span>
           <span class="tool-tag">Approval Gate</span>
         </div>
@@ -2086,7 +2254,7 @@ section:nth-child(even) {
 
       <div class="flow-step">
         <div class="flow-step-indicator">
-          <div class="flow-step-number">7</div>
+          <div class="flow-step-number">8</div>
         </div>
         <div class="flow-step-content">
           <h4>Tasks Created in Notion</h4>
@@ -2213,7 +2381,7 @@ section:nth-child(even) {
     <div class="section-header fade-in">
       <div class="section-label">Connections</div>
       <h2>Data Sources &amp; Integrations</h2>
-      <p>Edge connects to eight core services, each with scoped access and defined data flow patterns.</p>
+      <p>Edge connects to seven core services, each with scoped access and defined data flow patterns.</p>
     </div>
 
     <div class="integrations-grid stagger" id="integrationsGrid">
@@ -2281,11 +2449,12 @@ section:nth-child(even) {
           <h4>Google Calendar</h4>
           <div class="integration-status status-live" aria-label="Live"></div>
         </div>
-        <p style="font-size: 0.85rem; color: var(--text-muted);">Calendar access via Google Service Account. Reads events, attendees, and scheduling data.</p>
+        <p style="font-size: 0.85rem; color: var(--text-muted);">Bidirectional calendar access via Google Service Account. Reads events and attendees, writes travel time blocks and reschedules via Emily approval.</p>
         <div class="integration-tags">
           <span class="integration-tag">Events</span>
           <span class="integration-tag">Attendees</span>
           <span class="integration-tag">Scheduling</span>
+          <span class="integration-tag">Travel Blocks</span>
         </div>
         <div class="integration-meta">
           <div class="integration-meta-row">
@@ -2294,7 +2463,7 @@ section:nth-child(even) {
           </div>
           <div class="integration-meta-row">
             <span class="integration-meta-label">Flow</span>
-            <span class="integration-meta-value">Read-only</span>
+            <span class="integration-meta-value">Bidirectional</span>
           </div>
         </div>
       </div>
@@ -2353,29 +2522,23 @@ section:nth-child(even) {
         </div>
       </div>
 
-      <!-- Linear -->
-      <div class="integration-card">
+      <!-- Linear (Deferred) -->
+      <div class="integration-card" style="opacity: 0.5;">
         <div class="integration-card-header">
-          <div class="integration-icon" style="background: rgba(99, 102, 241, 0.1);">
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 10l4 4 8-8" stroke="#6366f1" stroke-width="2" fill="none" stroke-linecap="round"/></svg>
+          <div class="integration-icon" style="background: rgba(99, 102, 241, 0.05);">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 10l4 4 8-8" stroke="#6366f1" stroke-width="2" fill="none" stroke-linecap="round" opacity="0.4"/></svg>
           </div>
-          <h4>Linear</h4>
-          <div class="integration-status status-live" aria-label="Live"></div>
+          <h4 style="color: var(--text-muted);">Linear</h4>
+          <div style="width: 8px; height: 8px; border-radius: 50%; background: var(--text-muted);" aria-label="Deferred"></div>
         </div>
-        <p style="font-size: 0.85rem; color: var(--text-muted);">Development ticket management. Syncs issues, status updates, and assignments with Notion.</p>
+        <p style="font-size: 0.85rem; color: var(--text-muted);">Development ticket management. Deferred &mdash; not included in initial deployment.</p>
         <div class="integration-tags">
-          <span class="integration-tag">Issues</span>
-          <span class="integration-tag">Projects</span>
-          <span class="integration-tag">Status</span>
+          <span class="integration-tag" style="opacity: 0.5;">Deferred</span>
         </div>
         <div class="integration-meta">
           <div class="integration-meta-row">
-            <span class="integration-meta-label">Auth</span>
-            <span class="integration-meta-value">API Key</span>
-          </div>
-          <div class="integration-meta-row">
-            <span class="integration-meta-label">Flow</span>
-            <span class="integration-meta-value">Bidirectional</span>
+            <span class="integration-meta-label">Status</span>
+            <span class="integration-meta-value" style="color: var(--text-muted);">Deferred</span>
           </div>
         </div>
       </div>
@@ -2495,7 +2658,7 @@ section:nth-child(even) {
         <ul style="color: var(--text-secondary); font-size: 0.88rem; line-height: 1.8; padding-left: 16px; margin: 0;">
           <li>Deployed 11 parallel research agents</li>
           <li>Analyzed 80+ sources across security, APIs, AI research</li>
-          <li>Wrote 12 custom skill drafts (14,000+ lines)</li>
+          <li>Wrote 22 custom skill specs (14,000+ lines)</li>
           <li>Built architecture plan with 5 review passes</li>
           <li>Created this explainer website</li>
           <li>Completed full gap analysis and deployment roadmap</li>
@@ -2506,7 +2669,7 @@ section:nth-child(even) {
         <div style="color: var(--text-muted); font-size: 0.8rem; margin-bottom: 4px;">March 31 &mdash; Day 5</div>
         <h4 style="margin-bottom: 12px; font-size: 1.05rem;">Install Day &mdash; Edge Goes Live</h4>
         <ul style="color: var(--text-secondary); font-size: 0.88rem; line-height: 1.8; padding-left: 16px; margin: 0;">
-          <li>Security hardening: FileVault, firmware password, gateway lockdown</li>
+          <li>Security hardening: FileVault, auto-login enabled (LaunchAgent persistence), gateway lockdown</li>
           <li>Content sanitizer &amp; secret redaction deployed</li>
           <li>oMLX local inference + mxbai embeddings installed</li>
           <li>Persistent memory system with hybrid search</li>
@@ -2536,7 +2699,7 @@ section:nth-child(even) {
         <div class="stat-label">Lines of custom skill code written</div>
       </div>
       <div class="stat-card">
-        <div class="stat-value accent" data-count="12" data-suffix="">0</div>
+        <div class="stat-value accent" data-count="22" data-suffix="">0</div>
         <div class="stat-label">Custom skills designed from scratch</div>
       </div>
       <div class="stat-card">
@@ -2583,7 +2746,7 @@ section:nth-child(even) {
             </div>
             <ul style="color: var(--text-muted); font-size: 0.8rem; line-height: 1.7; padding-left: 14px; margin: 0;">
               <li>FileVault disk encryption</li>
-              <li>Firmware password + disable auto-login</li>
+              <li>Auto-login enabled (required for LaunchAgent persistence after power outage). FileVault encryption covers physical theft risk.</li>
               <li>Gateway bound to 127.0.0.1</li>
               <li>Exec-approvals in allowlist mode</li>
               <li>Content sanitizer (13 regex patterns)</li>
@@ -2618,6 +2781,18 @@ section:nth-child(even) {
             </ul>
           </div>
 
+          <div style="background: var(--bg-secondary); border-radius: var(--radius-sm); padding: 14px 16px; border-left: 3px solid var(--rose);">
+            <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
+              <span style="color: var(--rose); font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em;">0.4</span>
+              <span style="font-size: 0.9rem; font-weight: 600;">Humanizer</span>
+            </div>
+            <ul style="color: var(--text-muted); font-size: 0.8rem; line-height: 1.7; padding-left: 14px; margin: 0;">
+              <li>24+ AI pattern removal for natural writing</li>
+              <li>Strip AI tells from all outbound content</li>
+              <li>Post-processor for email drafts and briefings</li>
+            </ul>
+          </div>
+
           <div style="background: var(--bg-secondary); border-radius: var(--radius-sm); padding: 14px 16px; border-left: 3px solid var(--cyan);">
             <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
               <span style="color: var(--cyan); font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em;">0.5</span>
@@ -2641,6 +2816,18 @@ section:nth-child(even) {
               <li>mxbai-embed-large for vectors</li>
               <li>Hybrid search (vector 0.7 + text 0.3)</li>
               <li>Hot/Warm/Cold memory tiers</li>
+            </ul>
+          </div>
+
+          <div style="background: var(--bg-secondary); border-radius: var(--radius-sm); padding: 14px 16px; border-left: 3px solid var(--warning);">
+            <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
+              <span style="color: var(--warning); font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em;">0.7</span>
+              <span style="font-size: 0.9rem; font-weight: 600;">Lossless Claw</span>
+            </div>
+            <ul style="color: var(--text-muted); font-size: 0.8rem; line-height: 1.7; padding-left: 14px; margin: 0;">
+              <li>Zero-loss context management</li>
+              <li>DAG summarization for context preservation</li>
+              <li>Prevents context overflow across long sessions</li>
             </ul>
           </div>
 
@@ -2727,7 +2914,7 @@ section:nth-child(even) {
               <span style="font-size: 0.9rem; font-weight: 600;">Personal CRM</span>
             </div>
             <ul style="color: var(--text-muted); font-size: 0.8rem; line-height: 1.7; padding-left: 14px; margin: 0;">
-              <li>SQLite local cache (5 tables)</li>
+              <li>SQLite local cache (7 tables)</li>
               <li>Initial Notion sync (20K+ contacts)</li>
             </ul>
           </div>
@@ -2751,7 +2938,7 @@ section:nth-child(even) {
               <span style="font-size: 0.9rem; font-weight: 600;">Daily Briefing</span>
             </div>
             <ul style="color: var(--text-muted); font-size: 0.8rem; line-height: 1.7; padding-left: 14px; margin: 0;">
-              <li>7 AM morning brief via Telegram</li>
+              <li>5:30 AM morning brief via Telegram</li>
               <li>7 PM end-of-day summary</li>
             </ul>
           </div>
@@ -2775,6 +2962,45 @@ section:nth-child(even) {
             <ul style="color: var(--text-muted); font-size: 0.8rem; line-height: 1.7; padding-left: 14px; margin: 0;">
               <li>Urgency classification</li>
               <li>Learning loop via Telegram feedback</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Layer 4: Operations & Quality -->
+      <div style="background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px;" class="fade-in">
+        <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px;">
+          <div style="background: rgba(244, 63, 94, 0.15); color: var(--rose); width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.85rem; flex-shrink: 0;">4</div>
+          <div>
+            <h4 style="margin: 0; color: var(--rose); font-size: 1.1rem;">Operations &amp; Quality</h4>
+            <p style="margin: 0; font-size: 0.8rem; color: var(--text-muted);">Testing, validation, and communication structure</p>
+          </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px;">
+          <div style="background: var(--bg-secondary); border-radius: var(--radius-sm); padding: 14px 16px; border-left: 3px solid var(--rose);">
+            <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
+              <span style="color: var(--rose); font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em;">4.1</span>
+              <span style="font-size: 0.9rem; font-weight: 600;">Testing Suite</span>
+            </div>
+            <ul style="color: var(--text-muted); font-size: 0.8rem; line-height: 1.7; padding-left: 14px; margin: 0;">
+              <li>E2E testing via Telegram test topics</li>
+              <li>Mock data library for every code path</li>
+              <li>Safety assertions block production in test mode</li>
+              <li>5-phase validation protocol</li>
+            </ul>
+          </div>
+
+          <div style="background: var(--bg-secondary); border-radius: var(--radius-sm); padding: 14px 16px; border-left: 3px solid var(--rose);">
+            <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
+              <span style="color: var(--rose); font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em;">4.2</span>
+              <span style="font-size: 0.9rem; font-weight: 600;">Telegram Strategy</span>
+            </div>
+            <ul style="color: var(--text-muted); font-size: 0.8rem; line-height: 1.7; padding-left: 14px; margin: 0;">
+              <li>Two groups: Edge HQ (Dan) + Emily Edge HQ</li>
+              <li>Project-based topic routing</li>
+              <li>requireMentions=false everywhere</li>
+              <li>Emily filters all urgent messages</li>
             </ul>
           </div>
         </div>
@@ -3096,7 +3322,7 @@ section:nth-child(even) {
       <!-- Why This Approach -->
       <div style="margin-bottom: 20px;">
         <h4 style="color: var(--accent-light); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px;">Why This Approach</h4>
-        <p style="font-size: 0.9rem; color: var(--text-secondary); line-height: 1.7; margin-bottom: 12px;">Shared test infrastructure ensures consistent, safe validation across all 16 skills. Ryan&rsquo;s Telegram (operator) receives all test output. Mock data library exercises every code path. Safety assertions hard-block production delivery in test mode.</p>
+        <p style="font-size: 0.9rem; color: var(--text-secondary); line-height: 1.7; margin-bottom: 12px;">Shared test infrastructure ensures consistent, safe validation across all 22 skills. Ryan&rsquo;s Telegram (operator) receives all test output. Mock data library exercises every code path. Safety assertions hard-block production delivery in test mode.</p>
       </div>
 
       <!-- How It Works -->
@@ -3209,7 +3435,7 @@ section:nth-child(even) {
         </div>
         <div>
           <h3 style="margin: 0; font-size: 1.3rem;">Scheduling Intelligence</h3>
-          <p style="margin: 0; font-size: 0.85rem; color: var(--text-muted);">Layer 1 &mdash; Communication &bull; 30-min heartbeat &bull; gog + goplaces</p>
+          <p style="margin: 0; font-size: 0.85rem; color: var(--text-muted);">Layer 1 &mdash; Communication &bull; 30-min heartbeat &bull; Google Service Account + goplaces</p>
         </div>
         <span style="margin-left: auto; background: rgba(34, 197, 94, 0.15); color: var(--success); font-size: 0.75rem; font-weight: 600; padding: 4px 12px; border-radius: 20px; text-transform: uppercase; letter-spacing: 0.05em;">Approved</span>
       </div>
@@ -4430,7 +4656,7 @@ section:nth-child(even) {
           <span class="integration-tag">Email via Himalaya</span>
           <span class="integration-tag">Calendar Sync</span>
           <span class="integration-tag">Notion Integration</span>
-          <span class="integration-tag">Daily Briefing (7 AM)</span>
+          <span class="integration-tag">Daily Briefing (5:30 AM)</span>
           <span class="integration-tag">Meeting Prep Engine</span>
         </div>
       </div>
@@ -4456,7 +4682,6 @@ section:nth-child(even) {
         </div>
         <div style="display: flex; flex-wrap: wrap; gap: 8px;">
           <span class="integration-tag">GitHub CI/CD</span>
-          <span class="integration-tag">Linear Tickets</span>
           <span class="integration-tag">Connor's Agent</span>
           <span class="integration-tag">Cody's Agent</span>
           <span class="integration-tag">Gibson's Agent</span>
@@ -4563,7 +4788,7 @@ section:nth-child(even) {
           <svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true"><path d="M6 8h16v12H6z" stroke="#f97316" stroke-width="1.5" fill="none" rx="1"/><path d="M10 12h8M10 15h5" stroke="#f97316" stroke-width="1" opacity="0.6"/></svg>
         </div>
         <h4>DevBot</h4>
-        <p>Engineering operations. GitHub CI/CD, code review, deployment management, Linear ticket automation.</p>
+        <p>Engineering operations. GitHub CI/CD, code review, deployment management, and automated PR workflows.</p>
       </div>
       <div class="vision-node">
         <div class="vision-node-icon" style="background: rgba(249, 115, 22, 0.15);">
@@ -4831,11 +5056,10 @@ section:nth-child(even) {
     { id: 'telegram', name: 'Telegram', desc: 'Primary communication channel. Dan sends commands and receives briefings, approvals, and alerts via a custom Telegram bot.', color: '#26a6de', icon: '\u2709', angle: 0 },
     { id: 'notion', name: 'Notion', desc: 'The data hub. Stores People, Companies, Tasks, and Interactions. Source of truth for all structured data.', color: '#ffffff', icon: '\u2630', angle: 45 },
     { id: 'gmail', name: 'Gmail', desc: 'Email via Himalaya CLI (IMAP/SMTP). Permanent connection with app-specific password. No OAuth refresh needed.', color: '#ea4335', icon: '\u2709', angle: 90 },
-    { id: 'calendar', name: 'Calendar', desc: 'Google Calendar via Service Account. Read-only access to events, attendees, and scheduling data.', color: '#4285f4', icon: '\u25A3', angle: 135 },
+    { id: 'calendar', name: 'Calendar', desc: 'Google Calendar via Service Account. Bidirectional access: reads events and attendees, writes travel time blocks and reschedules via Emily approval.', color: '#4285f4', icon: '\u25A3', angle: 135 },
     { id: 'github', name: 'GitHub', desc: 'Version control and CI/CD. Manages code repositories, pull requests, and automated deployments.', color: '#f0f4f8', icon: '\u2731', angle: 180 },
-    { id: 'linear', name: 'Linear', desc: 'Development ticket tracking. Bidirectional sync of issues, status updates, and assignments.', color: '#6366f1', icon: '\u2713', angle: 225 },
-    { id: 'tavily', name: 'Tavily', desc: 'AI-optimized web search. Powers contact discovery and meeting prep research with real-time web data.', color: '#10b981', icon: '\u26B2', angle: 270 },
-    { id: 'claude', name: 'Claude API', desc: 'The reasoning engine. Provides AI analysis, writing, and decision-making capabilities for all Edge skills.', color: '#d4a574', icon: '\u2726', angle: 315 }
+    { id: 'tavily', name: 'Tavily', desc: 'AI-optimized web search. Powers contact discovery and meeting prep research with real-time web data.', color: '#10b981', icon: '\u26B2', angle: 225 },
+    { id: 'claude', name: 'Claude API', desc: 'The reasoning engine. Provides AI analysis, writing, and decision-making capabilities for all Edge skills.', color: '#d4a574', icon: '\u2726', angle: 270 }
   ];
 
   function buildArchDiagram() {
