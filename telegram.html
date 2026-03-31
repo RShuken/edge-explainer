@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Edge — Telegram Communication Strategy</title>
+<link rel="icon" href="data:,">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&display=swap');
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg-primary: #0a1628;
+  --bg-secondary: #0d1b30;
+  --bg-card: #111d35;
+  --accent: #3b82f6;
+  --accent-glow: rgba(59, 130, 246, 0.15);
+  --purple: #a855f7;
+  --purple-glow: rgba(168, 85, 247, 0.15);
+  --emerald: #10b981;
+  --emerald-glow: rgba(16, 185, 129, 0.15);
+  --orange: #f97316;
+  --orange-glow: rgba(249, 115, 22, 0.15);
+  --cyan: #06b6d4;
+  --cyan-glow: rgba(6, 182, 212, 0.15);
+  --rose: #f43f5e;
+  --text-primary: #f0f4f8;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
+  --border: rgba(59, 130, 246, 0.12);
+  --border-bright: rgba(59, 130, 246, 0.25);
+  --radius: 14px;
+  --radius-sm: 10px;
+  --shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Outfit', -apple-system, sans-serif;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  line-height: 1.6;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 20% 0%, rgba(59,130,246,0.06) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 100%, rgba(168,85,247,0.04) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.container { max-width: 1400px; margin: 0 auto; padding: 40px 24px 80px; position: relative; z-index: 1; }
+
+.header { text-align: center; margin-bottom: 48px; padding: 48px 0 40px; }
+.header-label { font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.15em; color: var(--accent); margin-bottom: 12px; }
+.header h1 { font-size: clamp(2rem, 4vw, 3rem); font-weight: 800; letter-spacing: -0.03em; margin-bottom: 12px; background: linear-gradient(135deg, var(--text-primary) 0%, var(--accent) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.header p { font-size: 1.1rem; color: var(--text-secondary); max-width: 640px; margin: 0 auto; }
+
+/* Two-group layout */
+.groups-container { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 40px; }
+@media (max-width: 960px) { .groups-container { grid-template-columns: 1fr; } }
+
+.group-wrapper { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 20px; padding: 28px; position: relative; overflow: hidden; }
+.group-wrapper::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; }
+.group-dan::before { background: linear-gradient(90deg, var(--accent), var(--cyan)); }
+.group-emily::before { background: linear-gradient(90deg, var(--purple), var(--rose)); }
+
+.group-header { display: flex; align-items: center; gap: 14px; margin-bottom: 24px; padding-bottom: 16px; border-bottom: 1px solid var(--border); }
+.group-icon { width: 46px; height: 46px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; font-weight: 700; flex-shrink: 0; }
+.group-title { font-size: 1.3rem; font-weight: 700; letter-spacing: -0.02em; }
+.group-subtitle { font-size: 0.8rem; color: var(--text-muted); font-family: 'JetBrains Mono', monospace; }
+
+.section-label { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; margin: 20px 0 10px; padding: 4px 0; }
+
+.topic { display: flex; align-items: flex-start; gap: 9px; padding: 9px 0; border-bottom: 1px solid rgba(255,255,255,0.03); }
+.topic:last-child { border-bottom: none; }
+.topic-hash { font-family: 'JetBrains Mono', monospace; font-size: 0.78rem; font-weight: 600; flex-shrink: 0; margin-top: 1px; }
+.topic-name { font-size: 0.85rem; font-weight: 600; margin-bottom: 1px; }
+.topic-desc { font-size: 0.75rem; color: var(--text-muted); line-height: 1.5; }
+.topic-new { border-left: 2px solid; padding-left: 10px; margin-left: 4px; border-radius: 0; }
+
+/* Philosophy section */
+.philosophy { margin-bottom: 40px; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
+.phil-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 20px; }
+.phil-title { font-size: 0.85rem; font-weight: 700; margin-bottom: 8px; }
+.phil-text { font-size: 0.82rem; color: var(--text-muted); line-height: 1.6; }
+
+/* Flow section */
+.flow-section { margin: 40px 0; }
+.flow-title { font-size: 1.1rem; font-weight: 700; margin-bottom: 16px; text-align: center; color: var(--text-secondary); }
+.flow-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px; }
+.flow-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 18px; }
+.flow-card-title { font-size: 0.82rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 10px; }
+.flow-item { display: flex; align-items: center; gap: 8px; padding: 5px 0; font-size: 0.82rem; }
+.flow-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+.flow-arrow { color: var(--text-muted); font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; padding: 3px 0; }
+
+/* Stats */
+.stats-bar { display: flex; justify-content: center; gap: 32px; margin-top: 40px; padding: 20px; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); flex-wrap: wrap; }
+.stat { text-align: center; }
+.stat-value { font-family: 'JetBrains Mono', monospace; font-size: 1.4rem; font-weight: 700; color: var(--accent); }
+.stat-label { font-size: 0.75rem; color: var(--text-muted); margin-top: 2px; }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="header">
+    <div class="header-label">Crusoe Ventures / Edge AI Assistant</div>
+    <h1>Telegram Communication Strategy</h1>
+    <p>Two groups. Project-based. Less is more for Dan. Emily filters and manages operations. Dan focuses on what matters.</p>
+  </div>
+
+  <!-- Philosophy -->
+  <div class="philosophy">
+    <div class="phil-card">
+      <div class="phil-title" style="color: var(--accent);">Less is More for Dan</div>
+      <div class="phil-text">Dan thinks in projects, not activity types. His group is project-scoped. No operational noise. No urgent email alerts (Emily filters those). Just his briefing, his meetings, and his projects.</div>
+    </div>
+    <div class="phil-card">
+      <div class="phil-title" style="color: var(--purple);">Emily Filters Everything</div>
+      <div class="phil-text">Urgent emails go to Emily first. She decides what actually reaches Dan. Scheduling, contacts, drafts, approvals &mdash; all in her group. She's the operational shield.</div>
+    </div>
+    <div class="phil-card">
+      <div class="phil-title" style="color: var(--emerald);">Project-Based Topics</div>
+      <div class="phil-text">Dan says "Hey Edge, make a new project for Ensuring Colorado's Innovation Future." Topic appears instantly. Each project is self-contained: tasks, PRs, updates, deploys. Easy to create, easy to find.</div>
+    </div>
+    <div class="phil-card">
+      <div class="phil-title" style="color: var(--orange);">Dan Can Peek Anytime</div>
+      <div class="phil-text">Dan can join Emily's group whenever he wants to see operational details. He just doesn't have to. His group stays clean. Her group has the full picture.</div>
+    </div>
+  </div>
+
+  <!-- Two Groups -->
+  <div class="groups-container">
+
+    <!-- EDGE HQ (Dan's Group) -->
+    <div class="group-wrapper group-dan">
+      <div class="group-header">
+        <div class="group-icon" style="background: linear-gradient(135deg, var(--accent), var(--cyan)); color: white;">E</div>
+        <div>
+          <div class="group-title">Edge HQ</div>
+          <div class="group-subtitle">Dan's Group &bull; Projects + Briefing</div>
+        </div>
+      </div>
+
+      <div class="section-label" style="color: var(--accent);">&#x1F4AC; GENERAL</div>
+
+      <div class="topic">
+        <span class="topic-hash" style="color: var(--accent);">#</span>
+        <div>
+          <div class="topic-name">edge</div>
+          <div class="topic-desc">Dan's main chat with Edge. Ask anything. "Book dinner at Frasca." "What's John's email?" "Move my 3 PM." Edge routes to the right skill automatically.</div>
+        </div>
+      </div>
+
+      <div class="section-label" style="color: var(--accent);">&#x1F4CB; DAN'S ESSENTIALS</div>
+
+      <div class="topic">
+        <span class="topic-hash" style="color: var(--accent);">#</span>
+        <div>
+          <div class="topic-name">dan-briefing</div>
+          <div class="topic-desc">Concise morning brief (5:30 AM). &lt;2,000 chars. Need-to-know only. EOD summary at 7 PM.</div>
+        </div>
+      </div>
+      <div class="topic">
+        <span class="topic-hash" style="color: var(--accent);">#</span>
+        <div>
+          <div class="topic-name">dan-meetings</div>
+          <div class="topic-desc">Meeting dossiers. External attendees. Travel + parking + GPS. Why we're meeting.</div>
+        </div>
+      </div>
+      <div class="topic">
+        <span class="topic-hash" style="color: var(--accent);">#</span>
+        <div>
+          <div class="topic-name">dan-approvals</div>
+          <div class="topic-desc">Items only Dan can decide. Investment calls. Major commitments.</div>
+        </div>
+      </div>
+
+      <div class="section-label" style="color: var(--orange);">&#x1F4BB; PROJECTS</div>
+
+      <div class="topic topic-new" style="border-color: var(--orange);">
+        <span class="topic-hash" style="color: var(--orange);">#</span>
+        <div>
+          <div class="topic-name">boulder-roots</div>
+          <div class="topic-desc">Boulder Roots Music Fest. Sponsor portal, website, event planning. Tasks &rarr; PRs &rarr; deploys.</div>
+        </div>
+      </div>
+      <div class="topic topic-new" style="border-color: var(--orange);">
+        <span class="topic-hash" style="color: var(--orange);">#</span>
+        <div>
+          <div class="topic-name">investments</div>
+          <div class="topic-desc">Direct investments. Active deal flow, term sheets, due diligence.</div>
+        </div>
+      </div>
+      <div class="topic topic-new" style="border-color: var(--orange);">
+        <span class="topic-hash" style="color: var(--orange);">#</span>
+        <div>
+          <div class="topic-name">portfolio</div>
+          <div class="topic-desc">30+ portfolio companies. Monitoring, LP reporting, quarterly updates, dashboard.</div>
+        </div>
+      </div>
+      <div class="topic topic-new" style="border-color: var(--orange);">
+        <span class="topic-hash" style="color: var(--orange);">#</span>
+        <div>
+          <div class="topic-name">contacts-vip</div>
+          <div class="topic-desc">Persons directory, VIP lists, contact updates. Who Dan needs to know about.</div>
+        </div>
+      </div>
+      <div class="topic topic-new" style="border-color: var(--orange);">
+        <span class="topic-hash" style="color: var(--orange);">#</span>
+        <div>
+          <div class="topic-name">ensuring-colorado</div>
+          <div class="topic-desc">Ensuring Colorado's Innovation Future. Policy, events, stakeholders.</div>
+        </div>
+      </div>
+      <div class="topic topic-new" style="border-color: var(--orange);">
+        <span class="topic-hash" style="color: var(--orange);">#</span>
+        <div>
+          <div class="topic-name">creators-edge</div>
+          <div class="topic-desc">Creators at the Edge community. Directory, events, content. "Gas Town" initiative.</div>
+        </div>
+      </div>
+      <div class="topic topic-new" style="border-color: var(--orange);">
+        <span class="topic-hash" style="color: var(--orange);">#</span>
+        <div>
+          <div class="topic-name">foundation</div>
+          <div class="topic-desc">Caruso Foundation. Grant tracking, nonprofit ops, quarterly board decks.</div>
+        </div>
+      </div>
+      <div class="topic topic-new" style="border-color: var(--orange);">
+        <span class="topic-hash" style="color: var(--orange);">#</span>
+        <div>
+          <div class="topic-name">bear-roars</div>
+          <div class="topic-desc">The Bear Roars podcast. Guest coordination, scheduling, show notes, episodes.</div>
+        </div>
+      </div>
+      <div class="topic topic-new" style="border-color: var(--text-muted);">
+        <span class="topic-hash" style="color: var(--text-muted);">#</span>
+        <div>
+          <div class="topic-name" style="color: var(--text-muted); font-style: italic;">{new-project}</div>
+          <div class="topic-desc">"Hey Edge, make a new project called X." Instant. Self-contained. Archivable later.</div>
+        </div>
+      </div>
+
+      <div class="section-label" style="color: var(--rose);">&#x2764;&#xFE0F; PERSONAL</div>
+
+      <div class="topic">
+        <span class="topic-hash" style="color: var(--rose);">#</span>
+        <div>
+          <div class="topic-name">personal</div>
+          <div class="topic-desc">Dinner reservations. Golf tournaments. House reservations (Beaver Creek, Cabo). Family calendar. Travel. Anything non-business.</div>
+        </div>
+      </div>
+
+      <div class="section-label" style="color: var(--emerald);">&#x1F527; OPERATIONS (peek only)</div>
+
+      <div class="topic">
+        <span class="topic-hash" style="color: var(--emerald);">#</span>
+        <div>
+          <div class="topic-name">nightman-report</div>
+          <div class="topic-desc">Overnight summary. What was accomplished. Ideas generated. Evening planning (6 PM).</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- EMILY EDGE HQ (Emily's Group) -->
+    <div class="group-wrapper group-emily">
+      <div class="group-header">
+        <div class="group-icon" style="background: linear-gradient(135deg, var(--purple), var(--rose)); color: white;">E</div>
+        <div>
+          <div class="group-title">Emily Edge HQ</div>
+          <div class="group-subtitle">Emily's Group &bull; Operations + Approvals</div>
+        </div>
+      </div>
+
+      <div class="section-label" style="color: var(--purple);">&#x1F4AC; GENERAL</div>
+
+      <div class="topic">
+        <span class="topic-hash" style="color: var(--purple);">#</span>
+        <div>
+          <div class="topic-name">edge</div>
+          <div class="topic-desc">Emily's main chat with Edge. "Research Sarah Chen." "What's on Dan's calendar Thursday?" "Draft a follow-up to John." Edge handles it.</div>
+        </div>
+      </div>
+
+      <div class="section-label" style="color: var(--purple);">&#x1F4CB; EMILY'S OPERATIONS</div>
+
+      <div class="topic">
+        <span class="topic-hash" style="color: var(--purple);">#</span>
+        <div>
+          <div class="topic-name">emily-briefing</div>
+          <div class="topic-desc">Detailed operational brief (5:30 AM). Calendar integrity, scheduling, contacts, full email digest.</div>
+        </div>
+      </div>
+      <div class="topic">
+        <span class="topic-hash" style="color: var(--purple);">#</span>
+        <div>
+          <div class="topic-name">emily-urgent</div>
+          <div class="topic-desc">ALL urgent emails come here first. Emily decides what actually reaches Dan. She's the filter.</div>
+        </div>
+      </div>
+      <div class="topic">
+        <span class="topic-hash" style="color: var(--purple);">#</span>
+        <div>
+          <div class="topic-name">emily-scheduling</div>
+          <div class="topic-desc">Calendar heartbeat (30 min). Conflicts, travel time, missing links. New event enrichment.</div>
+        </div>
+      </div>
+      <div class="topic">
+        <span class="topic-hash" style="color: var(--purple);">#</span>
+        <div>
+          <div class="topic-name">emily-drafts</div>
+          <div class="topic-desc">Email drafts in Dan's voice. Follow-ups. Approve/reject before sending.</div>
+        </div>
+      </div>
+      <div class="topic">
+        <span class="topic-hash" style="color: var(--purple);">#</span>
+        <div>
+          <div class="topic-name">emily-contacts</div>
+          <div class="topic-desc">Contact enrichment batch (5:00 AM). Confidence scores. Approve/reject. Title changes, new contacts.</div>
+        </div>
+      </div>
+      <div class="topic">
+        <span class="topic-hash" style="color: var(--purple);">#</span>
+        <div>
+          <div class="topic-name">emily-actions</div>
+          <div class="topic-desc">Action items from meetings. Task routing. Notion write approvals. Operational follow-ups.</div>
+        </div>
+      </div>
+
+      <div class="section-label" style="color: var(--emerald);">&#x1F527; SYSTEM</div>
+
+      <div class="topic">
+        <span class="topic-hash" style="color: var(--emerald);">#</span>
+        <div>
+          <div class="topic-name">security-council</div>
+          <div class="topic-desc">Nightly security audit. Critical findings alert immediately. 4-persona review.</div>
+        </div>
+      </div>
+      <div class="topic">
+        <span class="topic-hash" style="color: var(--emerald);">#</span>
+        <div>
+          <div class="topic-name">system-health</div>
+          <div class="topic-desc">Errors, failures, LaunchAgent status, backup status, KG health, transcript pipeline.</div>
+        </div>
+      </div>
+      <div class="topic">
+        <span class="topic-hash" style="color: var(--emerald);">#</span>
+        <div>
+          <div class="topic-name">nightman-emily</div>
+          <div class="topic-desc">Emily's view of overnight work. Draft follow-ups for her review. Enrichment results pending approval.</div>
+        </div>
+      </div>
+
+      <div class="section-label" style="color: var(--cyan);">&#x1F9EA; TESTING</div>
+
+      <div class="topic">
+        <span class="topic-hash" style="color: var(--cyan);">#</span>
+        <div>
+          <div class="topic-name">test-briefing</div>
+          <div class="topic-desc">Test both Dan's and Emily's briefings</div>
+        </div>
+      </div>
+      <div class="topic">
+        <span class="topic-hash" style="color: var(--cyan);">#</span>
+        <div>
+          <div class="topic-name">test-email</div>
+          <div class="topic-desc">Email classification, urgency, voice drafts</div>
+        </div>
+      </div>
+      <div class="topic">
+        <span class="topic-hash" style="color: var(--cyan);">#</span>
+        <div>
+          <div class="topic-name">test-scheduling</div>
+          <div class="topic-desc">Calendar heartbeat, travel time, conflicts</div>
+        </div>
+      </div>
+      <div class="topic">
+        <span class="topic-hash" style="color: var(--cyan);">#</span>
+        <div>
+          <div class="topic-name">test-crm</div>
+          <div class="topic-desc">CRM enrichment, Notion sync, contacts</div>
+        </div>
+      </div>
+      <div class="topic">
+        <span class="topic-hash" style="color: var(--cyan);">#</span>
+        <div>
+          <div class="topic-name">test-dev</div>
+          <div class="topic-desc">Dev team agents, PRs, code review</div>
+        </div>
+      </div>
+      <div class="topic">
+        <span class="topic-hash" style="color: var(--cyan);">#</span>
+        <div>
+          <div class="topic-name">test-voice-calls</div>
+          <div class="topic-desc">Voice cloning phone calls</div>
+        </div>
+      </div>
+      <div class="topic">
+        <span class="topic-hash" style="color: var(--cyan);">#</span>
+        <div>
+          <div class="topic-name">test-nightman</div>
+          <div class="topic-desc">Overnight processing cycles</div>
+        </div>
+      </div>
+      <div class="topic">
+        <span class="topic-hash" style="color: var(--cyan);">#</span>
+        <div>
+          <div class="topic-name">test-actions</div>
+          <div class="topic-desc">Action item extraction + routing</div>
+        </div>
+      </div>
+      <div class="topic">
+        <span class="topic-hash" style="color: var(--cyan);">#</span>
+        <div>
+          <div class="topic-name">test-security</div>
+          <div class="topic-desc">Security council + backup</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Routing Flow -->
+  <div class="flow-section">
+    <div class="flow-title">How Information Flows</div>
+    <div class="flow-grid">
+
+      <div class="flow-card">
+        <div class="flow-card-title" style="color: var(--rose);">Urgent Email Path</div>
+        <div class="flow-item"><div class="flow-dot" style="background: var(--accent);"></div> Email arrives at edge@crusoeventures.com</div>
+        <div class="flow-arrow">&nbsp;&nbsp;&rarr;</div>
+        <div class="flow-item"><div class="flow-dot" style="background: var(--cyan);"></div> Opus dual-classifies urgency + extracts the ask</div>
+        <div class="flow-arrow">&nbsp;&nbsp;&rarr;</div>
+        <div class="flow-item"><div class="flow-dot" style="background: var(--purple);"></div> <strong>Emily sees it first</strong> in #emily-urgent</div>
+        <div class="flow-arrow">&nbsp;&nbsp;&rarr;</div>
+        <div class="flow-item"><div class="flow-dot" style="background: var(--accent);"></div> Emily flags to Dan only if truly urgent</div>
+        <div style="font-size: 0.75rem; color: var(--text-muted); margin-top: 8px; padding-left: 16px;">Dan never gets false-positive email alerts. Emily is the filter.</div>
+      </div>
+
+      <div class="flow-card">
+        <div class="flow-card-title" style="color: var(--orange);">Project Work Path</div>
+        <div class="flow-item"><div class="flow-dot" style="background: var(--accent);"></div> Dan posts: "Add sponsor tiers to Boulder Roots"</div>
+        <div class="flow-arrow">&nbsp;&nbsp;&rarr;</div>
+        <div class="flow-item"><div class="flow-dot" style="background: var(--orange);"></div> PM agent breaks into tasks in #boulder-roots</div>
+        <div class="flow-arrow">&nbsp;&nbsp;&rarr;</div>
+        <div class="flow-item"><div class="flow-dot" style="background: var(--orange);"></div> Agents build overnight (Nightman cycles)</div>
+        <div class="flow-arrow">&nbsp;&nbsp;&rarr;</div>
+        <div class="flow-item"><div class="flow-dot" style="background: var(--emerald);"></div> PR + preview URL posted in same topic</div>
+        <div class="flow-arrow">&nbsp;&nbsp;&rarr;</div>
+        <div class="flow-item"><div class="flow-dot" style="background: var(--accent);"></div> Dan taps [Approve + Merge]. Done.</div>
+      </div>
+
+      <div class="flow-card">
+        <div class="flow-card-title" style="color: var(--purple);">Emily's Morning Flow</div>
+        <div class="flow-item"><div class="flow-dot" style="background: var(--purple);"></div> 5:00 AM: Contact enrichment batch in #emily-contacts</div>
+        <div class="flow-arrow">&nbsp;&nbsp;&rarr;</div>
+        <div class="flow-item"><div class="flow-dot" style="background: var(--purple);"></div> 5:30 AM: Full operational briefing in #emily-briefing</div>
+        <div class="flow-arrow">&nbsp;&nbsp;&rarr;</div>
+        <div class="flow-item"><div class="flow-dot" style="background: var(--purple);"></div> 5:30 AM: Draft follow-ups in #emily-drafts</div>
+        <div class="flow-arrow">&nbsp;&nbsp;&rarr;</div>
+        <div class="flow-item"><div class="flow-dot" style="background: var(--purple);"></div> Ongoing: Calendar heartbeat in #emily-scheduling</div>
+        <div style="font-size: 0.75rem; color: var(--text-muted); margin-top: 8px; padding-left: 16px;">Emily approves enrichments first, then reads briefing, then handles drafts. Structured order.</div>
+      </div>
+
+      <div class="flow-card">
+        <div class="flow-card-title" style="color: var(--emerald);">New Project Creation</div>
+        <div class="flow-item"><div class="flow-dot" style="background: var(--accent);"></div> Dan: "Hey Edge, new project: Ensuring Colorado"</div>
+        <div class="flow-arrow">&nbsp;&nbsp;&rarr;</div>
+        <div class="flow-item"><div class="flow-dot" style="background: var(--emerald);"></div> Edge creates #ensuring-colorado topic instantly</div>
+        <div class="flow-arrow">&nbsp;&nbsp;&rarr;</div>
+        <div class="flow-item"><div class="flow-dot" style="background: var(--orange);"></div> Agent team assigned, goals set, work begins</div>
+        <div style="font-size: 0.75rem; color: var(--text-muted); margin-top: 8px; padding-left: 16px;">"Hey Edge, make a new project called X" &mdash; that's it. One message.</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Stats -->
+  <div class="stats-bar">
+    <div class="stat">
+      <div class="stat-value">2</div>
+      <div class="stat-label">Groups</div>
+    </div>
+    <div class="stat">
+      <div class="stat-value">~14</div>
+      <div class="stat-label">Dan's Topics</div>
+    </div>
+    <div class="stat">
+      <div class="stat-value">~15</div>
+      <div class="stat-label">Emily's Topics</div>
+    </div>
+    <div class="stat">
+      <div class="stat-value">&infin;</div>
+      <div class="stat-label">Projects (on demand)</div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
